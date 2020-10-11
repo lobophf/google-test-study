@@ -21,7 +21,8 @@ TEST(TestCountPositives, EmptyVectorTest){
 	int count = countPositives(inputVector);
 	
 	//Assert
-	ASSERT_EQ(0, count);
+	EXPECT_EQ(1, count);
+	std::cout << "After the assertion" << std::endl;
 }
 
 TEST(TestCountPositives, AllNegativesTest){
@@ -36,6 +37,6 @@ TEST(TestCountPositives, AllNegativesTest){
 }
 
 int main(int argc, char **argv){
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }
