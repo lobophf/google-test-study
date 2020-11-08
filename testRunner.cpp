@@ -1,11 +1,35 @@
 #include <iostream>
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
+
 #include "LibraryCode.hpp"
+
+class SomeClass{
+public:
+	SomeClass()=default;
+	virtual void someMethod(){
+		std::cout << "Say somenthing\n";
+	}
+};
+
+class MockedClass: public SomeClass{
+public:
+	MockedClass()=default;
+	MOCK_METHOD0(someMethod, void());
+
+};
+
+TEST(TestSample, TestMock){
+	MockedClass mc;
+	EXPECT_CALL(mc, someMethod()).Times(1);
+	mc.someMethod();
+}
 
 TEST(TestCountPositives, BasicTest){
 	//Arrange
 	std::vector<int> inputVector{1, -2, 3, -4, 5, -6, -7};
 	
+
 	//Act
 	int count = countPositives(inputVector);
 	
